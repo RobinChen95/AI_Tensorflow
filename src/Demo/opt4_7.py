@@ -18,9 +18,9 @@ Y_c = [['red' if y else 'blue'] for y in Y_]
 # 对数据集X和标签Y进行shape整理，第一个元素为-1表示，随第二个参数计算得到，第二个元素表示多少列，把X整理为n行2列，把Y整理为n行1列
 X = np.vstack(X).reshape(-1, 2)
 Y_ = np.vstack(Y_).reshape(-1, 1)
-print X
-print Y_
-print Y_c
+print (X)
+print (Y_)
+print (Y_c)
 # 用plt.scatter画出数据集X各行中第0列元素和第1列元素的点即各行的（x0，x1），用各行Y_c对应的值表示颜色（c是color的缩写）
 plt.scatter(X[:, 0], X[:, 1], c=np.squeeze(Y_c))
 plt.show()
@@ -75,10 +75,10 @@ with tf.Session() as sess:
     probs = sess.run(y, feed_dict={x: grid})
     # probs的shape调整成xx的样子
     probs = probs.reshape(xx.shape)
-    print "w1:\n", sess.run(w1)
-    print "b1:\n", sess.run(b1)
-    print "w2:\n", sess.run(w2)
-    print "b2:\n", sess.run(b2)
+    print ("w1:\n", sess.run(w1))
+    print ("b1:\n", sess.run(b1))
+    print ("w2:\n", sess.run(w2))
+    print ("b2:\n", sess.run(b2))
 
 plt.scatter(X[:, 0], X[:, 1], c=np.squeeze(Y_c))
 plt.contour(xx, yy, probs, levels=[.5])
@@ -103,10 +103,10 @@ with tf.Session() as sess:
     grid = np.c_[xx.ravel(), yy.ravel()]
     probs = sess.run(y, feed_dict={x: grid})
     probs = probs.reshape(xx.shape)
-    print "w1:\n", sess.run(w1)
-    print "b1:\n", sess.run(b1)
-    print "w2:\n", sess.run(w2)
-    print "b2:\n", sess.run(b2)
+    print ("w1:\n", sess.run(w1))
+    print ("b1:\n", sess.run(b1))
+    print ("w2:\n", sess.run(w2))
+    print ("b2:\n", sess.run(b2))
 
 plt.scatter(X[:, 0], X[:, 1], c=np.squeeze(Y_c))
 plt.contour(xx, yy, probs, levels=[.5])

@@ -16,4 +16,4 @@ with tf.Session() as sess:
         sess.run(train_step)
         w_val = sess.run(w)
         loss_val = sess.run(loss)
-        print "After %s steps: w is %f,   loss is %f." % (i, w_val, loss_val)
+        print("After %s steps: w is %f,   loss is %f." % (i, w_val, loss_val))

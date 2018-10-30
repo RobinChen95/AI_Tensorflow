@@ -35,6 +35,6 @@ with tf.Session() as sess:
         end = (i * BATCH_SIZE) % 32 + BATCH_SIZE
         sess.run(train_step, feed_dict={x: X[start:end], y_: Y[start:end]})
         if i % 500 == 0:
-            print "After %d training steps, w1 is: " % (i)
-            print sess.run(w1), "\n"
-    print "Final w1 is: \n", sess.run(w1)
+            print("After %d training steps, w1 is: " % (i))
+            print(sess.run(w1), "\n")
+    print("Final w1 is: \n", sess.run(w1))
