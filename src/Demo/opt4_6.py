@@ -21,21 +21,21 @@ with tf.Session() as sess:
     sess.run(init_op)
     # 用ema.average(w1)获取w1滑动平均值 （要运行多个节点，作为列表中的元素列出，写在sess.run中）
     # 打印出当前参数w1和w1滑动平均值
-    print ("current global_step:", sess.run(global_step))
-    print ("current w1", sess.run([w1, ema.average(w1)]))
+    print("current global_step:", sess.run(global_step))
+    print("current w1", sess.run([w1, ema.average(w1)]))
 
     # 参数w1的值赋为1
     sess.run(tf.assign(w1, 1))
     sess.run(ema_op)
-    print ("current global_step:", sess.run(global_step))
-    print ("current w1", sess.run([w1, ema.average(w1)]))
+    print("current global_step:", sess.run(global_step))
+    print("current w1", sess.run([w1, ema.average(w1)]))
 
     # 更新global_step和w1的值,模拟出轮数为100时，参数w1变为10, 以下代码global_step保持为100，每次执行滑动平均操作，影子值会更新 
     sess.run(tf.assign(global_step, 100))
     sess.run(tf.assign(w1, 10))
     sess.run(ema_op)
-    print ("current global_step:", sess.run(global_step))
-    print ("current w1:", sess.run([w1, ema.average(w1)]))
+    print("current global_step:", sess.run(global_step))
+    print("current w1:", sess.run([w1, ema.average(w1)]))
 
     # 每次sess.run会更新一次w1的滑动平均值
     sess.run(ema_op)
@@ -43,24 +43,24 @@ with tf.Session() as sess:
     print("current w1:", sess.run([w1, ema.average(w1)]))
 
     sess.run(ema_op)
-    print ("current global_step:", sess.run(global_step))
-    print ("current w1:", sess.run([w1, ema.average(w1)]))
+    print("current global_step:", sess.run(global_step))
+    print("current w1:", sess.run([w1, ema.average(w1)]))
 
     sess.run(ema_op)
-    print ("current global_step:", sess.run(global_step))
-    print ("current w1:", sess.run([w1, ema.average(w1)]))
+    print("current global_step:", sess.run(global_step))
+    print("current w1:", sess.run([w1, ema.average(w1)]))
 
     sess.run(ema_op)
-    print ("current global_step:", sess.run(global_step))
-    print ("current w1:", sess.run([w1, ema.average(w1)]))
+    print("current global_step:", sess.run(global_step))
+    print("current w1:", sess.run([w1, ema.average(w1)]))
 
     sess.run(ema_op)
-    print ("current global_step:", sess.run(global_step))
-    print ("current w1:", sess.run([w1, ema.average(w1)]))
+    print("current global_step:", sess.run(global_step))
+    print("current w1:", sess.run([w1, ema.average(w1)]))
 
     sess.run(ema_op)
-    print ("current global_step:", sess.run(global_step))
-    print ("current w1:", sess.run([w1, ema.average(w1)]))
+    print("current global_step:", sess.run(global_step))
+    print("current w1:", sess.run([w1, ema.average(w1)]))
 
 # 更改MOVING_AVERAGE_DECAY 为 0.1  看影子追随速度
 
