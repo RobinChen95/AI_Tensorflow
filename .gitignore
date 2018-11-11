@@ -1,4 +1,8 @@
 *.iml
 *.xml
+*.index
+*.meta
+*.pyc
 /venv
 /.idea
+/src/Practice/model
