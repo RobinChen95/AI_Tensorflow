@@ -1,0 +1,19 @@
+import os
+
+'''
+这个代码会导致filename里面每个列表的内容都一样
+用append会把里面一个列表都append，因为[[]]*10会把所有的10个地址都指向同一个内容
+'''
+
+rootdir = './cifar-10/test/'
+list = os.listdir(rootdir)
+
+filenames = [[]] * 10
+for i in range(10):
+    path = os.path.join(rootdir, list[i])
+    subList = os.listdir(rootdir + "" + os.path.basename(path))
+    for j in range(0, len(subList)):
+        filenames[i].append(subList[j]+" "+str(i))
+
+for i in range(10):
+    print(filenames[i])

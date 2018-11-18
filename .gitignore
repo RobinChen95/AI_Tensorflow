@@ -8,3 +8,4 @@
 /src/Practice/model
 /mnist_data_jpg
 *.jpg
+*.tfrecords

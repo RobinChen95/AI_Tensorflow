@@ -1,7 +1,7 @@
 # coding:utf-8
 import time
 import tensorflow as tf
-from tensorflow.examples.tutorials.mnist import input_data, mnist
+from tensorflow.examples.tutorials.mnist import input_data
 import mnist_forward
 import mnist_backward
 import mnist_generateds
