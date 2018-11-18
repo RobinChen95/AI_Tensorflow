@@ -1,3 +1,4 @@
+# coding:utf-8
 import tensorflow as tf
 import numpy as np
 from PIL import Image
@@ -64,7 +65,7 @@ def application():
     testNum = input("input the number of the pictures:")
     # 验证testNum次
     for i in range(int(testNum)):
-        testPic = input("the path of test picture:")
+        testPic = raw_input("the path of test picture:")
         # 喂入图片
         testPicArr = pre_pic(testPic)
         # 重现计算图

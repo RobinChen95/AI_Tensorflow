@@ -1,7 +1,9 @@
+# coding:utf-8
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 import mnist_forward
 import os
+import mnist_generateds
 
 BATCH_SIZE = 200
 LEARNING_RATE_BASE = 0.1
@@ -15,6 +17,8 @@ MOVING_AVERAGE_DECAY = 0.99
 MODEL_SAVE_PATH = "./model/"
 # 模型保存名字
 MODEL_NAME = "mnist_model"
+# 新加的
+train_num_examples = 60000
 
 
 def backward(mnist):
@@ -46,6 +50,7 @@ def backward(mnist):
         train_op = tf.no_op(name='train')
     # 实例化Saver
     saver = tf.train.Saver()
+    img_batch, label_batch = mnist_generateds.get_tfRecord(BATCH_SIZE, isTrain=True)
 
     with tf.Session() as sess:
         init_op = tf.global_variables_initializer()
@@ -57,14 +62,19 @@ def backward(mnist):
         if ckpt and ckpt.model_checkpoint_path:
             saver.restore(sess, ckpt.model_checkpoint_path)
 
+        coord = tf.train.Coordinator()
+        threads = tf.train.start_queue_runners(sess=sess, coord=coord)
+
         for i in range(STEPS):
-            xs, ys = mnist.train.next_batch(BATCH_SIZE)
+            xs, ys = sess.run([img_batch, label_batch])
             # sess.run()之后才会有结果
             _, loss_value, step = sess.run([train_op, loss, global_step], feed_dict={x: xs, y_: ys})
             if i % 1000 == 0:
                 print("After %d training step(s), loss on training batch is %g." % (step, loss_value))
                 saver.save(sess, os.path.join(MODEL_SAVE_PATH, MODEL_NAME), global_step=global_step)
 
+        coord.request_stop()
+        coord.join(threads)
 
 def main():
     mnist = input_data.read_data_sets("./data/", one_hot=True)

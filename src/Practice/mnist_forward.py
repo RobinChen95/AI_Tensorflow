@@ -1,3 +1,4 @@
+# coding:utf-8
 import tensorflow as tf
 
 # 784个输入结点，输入的图片像素值，28X28，每个点是0-1之间的浮点数

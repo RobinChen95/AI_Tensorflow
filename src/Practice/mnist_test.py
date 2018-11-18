@@ -1,13 +1,13 @@
 # coding:utf-8
 import time
 import tensorflow as tf
-from tensorflow.examples.tutorials.mnist import input_data
+from tensorflow.examples.tutorials.mnist import input_data, mnist
 import mnist_forward
 import mnist_backward
-
+import mnist_generateds
 # 程序间隔时间5s
 TEST_INTERVAL_SECS = 5
-
+TEST_NUM = 10000
 
 def test(mnist):
     # 复现计算图
@@ -26,6 +26,8 @@ def test(mnist):
         correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
+        img_batch, label_batch = mnist_generateds.get_tfrecord(TEST_NUM, isTrain=False)
+
         while True:
             with tf.Session() as sess:
                 # 加载ckpt
@@ -34,8 +36,15 @@ def test(mnist):
                 if ckpt and ckpt.model_checkpoint_path:
                     saver.restore(sess, ckpt.model_checkpoint_path)
                     global_step = ckpt.model_checkpoint_path.split('/')[-1].split('-')[-1]
+
+                    coord = tf.train.Coordinator()
+                    threads = tf.train.start_queue_runners(sess=sess, coord=coord)
+
                     accuracy_score = sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels})
                     print("After %s training step(s), test accuracy = %g" % (global_step, accuracy_score))
+
+                    coord.request_stop()
+                    coord.join(threads)
                 else:
                     # 提示模型没有找到
                     print('No checkpoint file found')
