@@ -1,7 +1,7 @@
 # coding:utf-8
 import tensorflow as tf
 
-IMAGE_SIZE = 20
+IMAGE_SIZE = 28
 NUM_CHANNELS = 1
 CONV1_SIZE = 5
 CONV1_KERNEL_NUM = 32
