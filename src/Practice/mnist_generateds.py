@@ -16,6 +16,7 @@ resize_height = 28
 resize_width = 28
 
 
+# 生成tfrecord文件，此函数接受的参数为存放tfrecord文件的路径与文件名、图像路径、标签文件
 def write_tfRecord(tfRecordName, image_path, label_path):
     writer = tf.python_io.TFRecordWriter(tfRecordName)
     num_pic = 0
@@ -28,6 +29,7 @@ def write_tfRecord(tfRecordName, image_path, label_path):
         img = Image.open(img_path)
         img_raw = img.tobytes()
         labels = [0] * 10
+        # 制作标签列表
         labels[int(value[1])] = 1
 
         example = tf.train.Example(features=tf.train.Features(feature={
