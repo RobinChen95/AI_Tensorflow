@@ -38,12 +38,12 @@ def pre_pic(picName):
     # 打开传入的图片
     img = Image.open(picName)
     # 将img重置为28*28像素，以达到输入标准
-    reIm = img.resize((28, 28), Image.ANTIALIAS)
+    reIm = img.resize(32,32, Image.ANTIALIAS)
     # reIm.convert('L')表示将图片转为灰度图，np.array将其转换为矩阵的形式
     im_arr = np.array(reIm.convert('L'))
     threshold = 50
-    for i in range(28):
-        for j in range(28):
+    for i in range(32):
+        for j in range(32):
             # 将每个像素变为0与1两个值，以去除噪声
             if (im_arr[i][j] < threshold):
                 im_arr[i][j] = 0

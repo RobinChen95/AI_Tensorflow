@@ -41,7 +41,7 @@ def forward(x, train, regularizer):
 
     conv2_w = get_weight([CONV2_SIZE, CONV2_SIZE, NUM_CHANNELS, CONV2_KERNEL_NUM], regularizer)
     conv2_b = get_bias([CONV2_KERNEL_NUM])
-    conv2 = conv2d(x, conv2_w)
+    conv2 = conv2d(pool1, conv2_w)
     relu2 = tf.nn.relu(tf.nn.bias_add(conv2, conv2_b))
     pool2 = max_pool_2x2(relu2)
 
@@ -54,7 +54,7 @@ def forward(x, train, regularizer):
     fc1 = tf.nn.relu(tf.matmul(reshaped, fc1_w) + fc1_b)
     if train: fc1 = tf.nn.dropout(fc1, 0.5)
 
-    fc2_w = get_weight([FC_SIZE,OUTPUT_NODE],regularizer)
+    fc2_w = get_weight([FC_SIZE, OUTPUT_NODE], regularizer)
     fc2_b = get_bias([OUTPUT_NODE])
-    y = tf.matmul(fc1,fc2_w)+fc2_b
+    y = tf.matmul(fc1, fc2_w) + fc2_b
     return y
