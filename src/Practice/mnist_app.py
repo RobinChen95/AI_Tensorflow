@@ -38,8 +38,7 @@ def pre_pic(picName):
     img = Image.open(picName)
     # 将img重置为28*28像素，以达到输入标准
     reIm = img.resize((28, 28), Image.ANTIALIAS)
-    # reIm.convert('L')表示将图片转为灰度图，np.array将其转换为矩阵的形式
-    im_arr = np.array(reIm.convert('L'))
+    # reIm.convert('L')表示将图片转为灰度图，np.array将其转换为矩阵的形式w
     threshold = 50
     # 将每个像素变反
     for i in range(28):
