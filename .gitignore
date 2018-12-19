@@ -9,3 +9,6 @@
 /mnist_data_jpg
 *.jpg
 *.tfrecords
+*.png
+*.jpeg
+/src/im2txt/data
