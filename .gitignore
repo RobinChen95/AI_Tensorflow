@@ -3,6 +3,7 @@
 *.index
 *.meta
 *.pyc
+*.txt
 /venv
 /.idea
 /src/Practice/model
@@ -11,4 +12,6 @@
 *.tfrecords
 *.png
 *.jpeg
+/src/AgeAndGender/data
+/src/AgeAndGender/ageModel
 /src/im2txt/data
