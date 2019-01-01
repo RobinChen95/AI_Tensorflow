@@ -8,7 +8,7 @@ import os
 
 # 超参数
 AGE = generateds.AGE
-BATCH_SIZE = 256 # 批训练的数量
+BATCH_SIZE = 400 # 批训练的数量
 LR_BASE = 0.001 # 学习率的基础值
 LR_DECAY = 0.1 # 学习率衰减因子
 REGULARIZER = 0.0005 # L2正则化的权重衰减因子(0.0001 - 0.0010)
