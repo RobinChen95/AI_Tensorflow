@@ -6,6 +6,8 @@ from PIL import Image
 import forward
 import backward
 
+age_table=['(0, 2)','(4, 6)','(8, 12)','(15, 20)','(25, 32)','(38, 43)','(48, 53)','(60, 100)']
+sex_table=['f','m']  # f:女; m:男
 
 # 预测函数
 def restore_model(testPicArr):
@@ -25,12 +27,12 @@ def restore_model(testPicArr):
         # 开启会话，运行网络
         with tf.Session() as sess:
             # 获取模型路径
-            ckpt = tf.train.get_checkpoint_state(backward.MODEL_SAVE_PATH)
+            ckpt = tf.train.get_checkpoint_state("./model/")
             # 导入模型并预测
             if ckpt and ckpt.model_checkpoint_path:
                 saver.restore(sess, ckpt.model_checkpoint_path)
                 preValue = sess.run(preValue, feed_dict={x: testPicArr})
-                return preValue
+                return age_table[preValue[0]]
             else:
                 print("No CheckPoint File Found!")
                 return -1 
