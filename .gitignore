@@ -15,3 +15,4 @@
 /src/AgeAndGender/data
 /src/AgeAndGender/ageModel
 /src/im2txt/data
+*.csv
