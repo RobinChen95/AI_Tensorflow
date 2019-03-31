@@ -1,0 +1,312 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ESM后台管理系统</title>
+
+    <link rel="stylesheet" href="/resources/css/normalize.css">
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/resources/css/themify-icons.css">
+    <link rel="stylesheet" href="/resources/css/pe-icon-7-filled.css">
+    <link rel="stylesheet" href="/resources/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/resources/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="/resources/css/style.css">
+
+    <link href="/resources/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
+
+    <style>
+    	#weatherWidget .currentDesc {
+        color: #ffffff!important;
+    	}
+        .traffic-chart {
+            min-height: 335px;
+        }
+        #flotPie1  {
+            height: 150px;
+        }
+        #flotPie1 td {
+            padding:3px;
+        }
+        #flotPie1 table {
+            top: 20px!important;
+            right: -10px!important;
+        }
+        .chart-container {
+            display: table;
+            min-width: 270px ;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        #flotLine5  {
+             height: 105px;
+        }
+
+        #flotBarChart {
+            height: 150px;
+        }
+        #cellPaiChart{
+            height: 160px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<!-- Left Panel -->
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="{:url('manage/index')}"><i class="menu-icon fa fa-laptop"></i>首页 </a>
+                </li>
+                <li class="menu-title">车证审核</li><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="{:url('first_trial/index')}" class="dropdown-toggle" aria-expanded="false"> <i
+                            class="menu-icon fa fa-table"></i>初步审核</a>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="{:url('final_trial/index')}" class="dropdown-toggle" aria-expanded="false"> <i
+                            class="menu-icon fa fa-cogs"></i>最终审核</a>
+                </li>
+                <li class="menu-title">信息查询</li><!-- /.menu-title -->
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="{:url('credential_search/index')}" class="dropdown-toggle" aria-expanded="false"> <i
+                            class="menu-icon fa fa-tasks"></i>固定车证信息查询</a>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="{:url('people_appoint_search/index')}" class="dropdown-toggle" aria-expanded="false"> <i
+                            class="menu-icon fa fa-area-chart"></i>人员入校预约查询</a>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="{:url('car_appoint_search/index')}" class="dropdown-toggle" aria-expanded="false"> <i
+                            class="menu-icon fa fa-line-chart"></i>车辆入校预约查询</a>
+                </li>
+                <li class="menu-title">信息管理</li><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false"> <i class="menu-icon fa fa-th"></i>固定车证管理</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-sign-in"></i><a href="{:url('god_hand/add')}">快速添加</a></li>
+                        <li><i class="menu-icon fa fa-sign-in"></i><a href="{:url('god_hand/loss')}">车证挂失</a></li>
+                        <li><i class="menu-icon fa fa-sign-in"></i><a href="{:url('god_hand/invalid')}">车证失效</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="{:url('god_hand/peopleappoint')}" class="dropdown-toggle" aria-expanded="false"> <i
+                            class="menu-icon fa fa-area-chart"></i>人员入校快速预约</a>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="{:url('god_hand/carappoint')}" class="dropdown-toggle" aria-expanded="false"> <i
+                            class="menu-icon fa fa-line-chart"></i>车辆入校快速预约</a>
+                </li>
+
+                <li class="menu-title">更多功能</li><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown active">
+                    <a href="{:url('plugin_content/index')}" class="dropdown-toggle" aria-expanded="false"> <i
+                            class="menu-icon fa  fa-wrench"></i>入校须知修改</a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside>
+<!-- /#left-panel -->
+<!-- Right Panel -->
+<div id="right-panel" class="right-panel">
+    <!-- Header-->
+    <header id="header" class="header">
+        <div class="top-left">
+            <div class="navbar-header">
+                <a class="navbar-brand"><img src="/resources/images/logo_v5.png" alt="Logo"></a>
+                <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+            </div>
+        </div>
+    </header>
+    <!-- /#header -->
+
+    <div class="content">
+        <div class="animated fadeIn">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title" style="float:left;">待修改数据</strong>
+                            <div class="row" style="float:left;width:25%;margin-right:5%;margin-left:4.75%;">
+                                <button type="button" class="btn btn-outline-danger btn-lg btn-block" name="r"
+                                        id="Page1">固定车辆入校须知
+                                </button>
+                            </div>
+                            <div class="row" style="float:left;width:25%;margin-right:2%;margin-left:2%;">
+                                <button type="button" class="btn btn-outline-danger btn-lg btn-block" name="r"
+                                        id="Page2">临时车辆入校须知
+                                </button>
+                            </div>
+                            <div class="row" style="float:left;width:25%;margin-left:5%;">
+                                <button type="button" class="btn btn-outline-danger btn-lg btn-block" name="r"
+                                        id="Page3">临时人员入校须知
+                                </button>
+                            </div>
+                            <div name="pages">
+
+                                <div class="card-body">
+                                    <div>
+                                        <form role="form" action="{:url('plugin_content/doModify')}" method="post">
+                                            <div class="row form-group">
+                                                <div class="col col-md-1"><label for="password-input"
+                                                                                 class=" form-control-label">标题</label>
+                                                </div>
+                                                <div class="col-12 col-md-11">
+                                                    <input type="hidden" id="Page0" name="Page0" value="Page0"/>
+                                                    <textarea id="title" name="title" rows="1" cols="30"
+                                                              class="form-control">{$data[0]['title']}</textarea>
+                                                    <small id="modified_time" name="modified_time"
+                                                           class="help-block form-text"><span>上次修改时间：</span>{$data[0]['modified_time']}
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-1"><label for="textarea-input"
+                                                                                 class=" form-control-label">内容</label>
+                                                </div>
+                                                <div class="col-12 col-md-11"><textarea id="content" name="content"
+                                                                                        rows="20" cols="100"
+                                                                                        class="form-control">{$data[0]['content']}</textarea>
+                                                    <button type="submit"
+                                                            class="btn btn-outline-danger btn-lg btn-block"
+                                                            style="margin-top:15px">修改
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div name="pages" style="display:none">
+                                <div class="card-body">
+                                    <div>
+                                        <form role="form" action="{:url('plugin_content/doModify')}" method="post">
+                                            <div class="row form-group">
+                                                <div class="col col-md-1"><label for="password-input"
+                                                                                 class=" form-control-label">标题</label>
+                                                </div>
+                                                <div class="col-12 col-md-11">
+                                                    <input type="hidden" id="Page1" name="Page1" value="Page1"/>
+                                                    <textarea id="title" name="title" rows="1" cols="30"
+                                                              class="form-control">{$data[1]['title']}</textarea>
+                                                    <small id="modified_time" name="modified_time"
+                                                           class="help-block form-text"><span>上次修改时间：</span>{$data[1]['modified_time']}
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-1"><label for="textarea-input"
+                                                                                 class=" form-control-label">内容</label>
+                                                </div>
+                                                <div class="col-12 col-md-11"><textarea id="content" name="content"
+                                                                                        rows="20" cols="100"
+                                                                                        class="form-control">{$data[1]['content']}</textarea>
+                                                    <button type="submit"
+                                                            class="btn btn-outline-danger btn-lg btn-block"
+                                                            style="margin-top:15px">修改
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div name="pages" style="display:none">
+                                <div class="card-body">
+                                    <div>
+                                        <form role="form" action="{:url('plugin_content/doModify')}" method="post">
+                                            <div class="row form-group">
+                                                <div class="col col-md-1"><label for="password-input"
+                                                                                 class=" form-control-label">标题</label>
+                                                </div>
+                                                <div class="col-12 col-md-11">
+                                                    <input type="hidden" id="Page2" name="Page2" value="Page2"/>
+                                                    <textarea id="title" name="title" rows="1" cols="30"
+                                                              class="form-control">{$data[2]['title']}</textarea>
+                                                    <small id="modified_time" name="modified_time"
+                                                           class="help-block form-text"><span>上次修改时间：</span>{$data[2]['modified_time']}
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-1"><label for="textarea-input"
+                                                                                 class=" form-control-label">内容</label>
+                                                </div>
+                                                <div class="col-12 col-md-11"><textarea id="content" name="content"
+                                                                                        rows="20" cols="100"
+                                                                                        class="form-control">{$data[2]['content']}</textarea>
+
+                                                    <button type="submit"
+                                                            class="btn btn-outline-danger btn-lg btn-block"
+                                                            style="margin-top:15px">修改
+                                                    </button>
+
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div><!-- .animated -->
+    </div><!-- .content -->
+
+    <div class="clearfix"></div>
+</div>
+<!-- /#right-panel -->
+<script>
+      window.onload = function ()
+      {
+          var rs = document.getElementsByName('r');
+          var divs = document.getElementsByName('pages');
+          var index = 0;
+          var anonymous = function (i)
+          {
+              rs[i].onclick = function ()
+              {
+                  divs[index].style.display = "none";
+                  divs[i].style.display = "block";
+                  index = i;
+              };
+          };
+
+          for ( var i = 0; i < rs.length; i++)
+          {
+              anonymous (i);
+          }
+          rs[index].checked = true;
+          divs[index].style.display = "block";
+      };
+
+</script>
+<script src="/resources/javascript/vendor/jquery-2.1.4.min.js"></script>
+<script src="/resources/javascript/plugins.js"></script>
+<script src="/resources/javascript/main.js"></script>
+
+
+</body>
+</html>
