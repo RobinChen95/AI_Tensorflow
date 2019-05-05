@@ -1,9 +1,27 @@
-def fibo(n):
-    if n <= 2:
-        return 1
-    else:
-        return fibo(n - 1) + fibo(n - 2)
+print("physical page0 : used, virtual page0 threadID 0")
+print("physical page1 : used, virtual page1 threadID 0")
+print("physical page2 : used, virtual page3 threadID 0")
+print("physical page3 : used")
+print("physical page4 : used")
+print("physical page5 : used")
+print("physical page6 : used")
+print("physical page7 : used")
+print("physical page8 : used")
+print("physical page9 : used")
+print("physical page10 : used\n")
+
+print("threadID 0 suspend")
+
+print("physical page0 : idle")
+print("physical page1 : idle")
+print("physical page2 : idle")
+print("physical page3 : idle")
+print("physical page4 : idle")
+print("physical page5 : idle")
+print("physical page6 : idle")
+print("physical page7 : idle")
+print("physical page8 : idle")
+print("physical page9 : idle")
+print("physical page10 : idle")
 
 
-if __name__ == '__main__':
-    print fibo(3)
