@@ -1,7 +1,7 @@
 # coding:utf-8
 
 import os
-
+import time
 import forward
 import generateds
 import numpy as np
@@ -9,7 +9,7 @@ import tensorflow as tf
 
 # 超参数
 AGE = generateds.AGE
-BATCH_SIZE = 400  # 批训练的数量
+BATCH_SIZE = 200  # 批训练的数量
 LR_BASE = 0.001  # 学习率的基础值
 LR_DECAY = 0.1  # 学习率衰减因子
 REGULARIZER = 0.0005  # L2正则化的权重衰减因子(0.0001 - 0.0010)
@@ -86,6 +86,8 @@ def backward():
         threads = tf.train.start_queue_runners(sess=sess, coord=coord)
 
         # 开始训练
+        # 获取执行时间
+        start = time.time()
         for i in range(STEPS):
             # 获取样例与标签
             xs, ys = sess.run([img_batch, label_batch])
@@ -95,7 +97,11 @@ def backward():
             _, loss_value, step = sess.run([train_op, loss, global_step], feed_dict={x: xs, y_: ys})
             # 每隔千轮，输出一次loss，便于直接观察模型优化趋势，同时保存一次模型。
             if i % 10 == 0:
-                print("After %d training step(s), loss on training batch is %g." % (step, loss_value))
+                # 获取执行时间
+                duration = time.time()-start
+                print("After %d training step(s), loss on training batch is %g. Excution time: %s" % (step, loss_value,
+                                                                                                      duration))
+                start = time.time()
             if i % 100 == 0:
                 saver.save(sess, os.path.join(MODEL_SAVE_PATH, MODEL_NAME), global_step=global_step)
 
